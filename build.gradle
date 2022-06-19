@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation(platform('org.junit:junit-bom:5.8.2'))
+//    testImplementation(platform('org.junit:junit-bom:5.7.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')}
+test {
+    useJUnitPlatform()
+
+    systemProperty("junit.jupiter.testmethod.order.default", 'org.junit.jupiter.api.MethodOrderer$Random')
+
+
+    systemProperty("junit.jupiter.testclass.order.default", 'org.junit.jupiter.api.ClassOrderer$ClassName')
+//    systemProperty("junit.jupiter.testclass.order.default", 'org.junit.jupiter.api.ClassOrderer$DisplayName')
+//    systemProperty("junit.jupiter.testclass.order.default", 'org.junit.jupiter.api.ClassOrderer$OrderAnnotation')
+//    systemProperty("junit.jupiter.testclass.order.default", 'org.junit.jupiter.api.ClassOrderer$Random')
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
